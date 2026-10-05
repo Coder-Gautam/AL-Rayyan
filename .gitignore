@@ -1,0 +1,5 @@
+.vscode/
+*.log
+scratch_test_vert.html
+.DS_Store
+Thumbs.db
