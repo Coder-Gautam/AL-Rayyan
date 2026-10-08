@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Al Rayyan Energy &amp; Industrial Solutions</title>
+  <meta name="description"
+    content="Send your requirement to Al Rayyan Energy & Industrial Solutions LLC and we will respond with a technical and commercial review.">
+
+  <!-- Google Fonts: Bebas Neue (Major Headings) & Outfit (Small Headings and Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="css/aos.css">
+
+  <!-- Master Stylesheet (Strict Brand Palette & Exact Figma Aligned) -->
+  <link rel="stylesheet" href="css/main.css?v=3.2">
+</head>
+
+<body>
+
+  <!-- ==================== HEADER (EXACT FIGMA REPLICA) ==================== -->
+  <header class="site-header">
+    <div class="site-container header-inner">
+
+      <!-- Left Group: Logo + Navigation + Search -->
+      <div class="header-left-group">
+        <a href="index.html" class="header-brand" aria-label="Al Rayyan Home">
+          <img src="assets/images/global/header-logo.png" alt="Al Rayyan Energy and Industrial Solutions">
+        </a>
+
+        <nav class="header-nav" aria-label="Main Navigation">
+          <ul>
+            <li class="nav-item">
+              <a href="index.html#about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="products.html" class="nav-link">Products</a>
+            </li>
+            <li class="nav-item">
+              <a href="index.html#clients" class="nav-link">Our Clients</a>
+            </li>
+            <li class="nav-item">
+              <a href="index.html#partners" class="nav-link">Our Partners</a>
+            </li>
+            <li class="nav-item">
+              <a href="index.html#blogs" class="nav-link">Blogs</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header-search">
+          <input type="text" placeholder="Search" aria-label="Search site">
+          <span class="search-icon">
+            <img src="assets/images/global/search-svg.svg" alt="Search icon">
+          </span>
+        </div>
+      </div>
+
+      <!-- Right Group: Flag + Buttons -->
+      <div class="header-right-group">
+        <div class="lang-selector" title="Language">
+          <img src="assets/images/global/flag-icon.png" alt="English flag">
+          <span>En</span>
+        </div>
+
+        <a href="#rfqForm" class="btn-quote">Request a quote</a>
+        <a href="contact.html" class="btn-contact" style="background-color: var(--c-dark-navy); color: #fff;">Contact us</a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTACT PAGE ==================== -->
+  <main class="contact-page-section">
+    <div class="site-container">
+
+      <!-- Header / Title -->
+      <div class="contact-hero-wrap" data-aos="fade-up">
+        <h1 class="contact-page-title">Let's support your next project.</h1>
+        <p class="contact-page-subtitle">
+          Send your requirement and we'll respond with a technical and commercial review.
+        </p>
+      </div>
+
+      <!-- Two-Column Grid: Form + Info Cards -->
+      <div class="contact-grid">
+
+        <!-- Left Column: RFQ Form Card -->
+        <div class="contact-form-card" data-aos="fade-up" data-aos-delay="100">
+          <form class="contact-form" id="rfqForm" action="#" method="POST" novalidate>
+            <div class="contact-form-grid">
+
+              <!-- Full name -->
+              <div class="contact-field">
+                <label for="cName">Full name</label>
+                <input type="text" id="cName" name="name" class="contact-input" placeholder="Full name" autocomplete="name" required>
+              </div>
+
+              <!-- Company -->
+              <div class="contact-field">
+                <label for="cCompany">Company</label>
+                <input type="text" id="cCompany" name="company" class="contact-input" placeholder="Company" autocomplete="organization">
+              </div>
+
+              <!-- Email -->
+              <div class="contact-field">
+                <label for="cEmail">Email</label>
+                <input type="email" id="cEmail" name="email" class="contact-input" placeholder="Email" autocomplete="email" required>
+              </div>
+
+              <!-- Phone -->
+              <div class="contact-field">
+                <label for="cPhone">Phone</label>
+                <input type="tel" id="cPhone" name="phone" class="contact-input" placeholder="Phone" autocomplete="tel">
+              </div>
+
+              <!-- Product line (Full width) -->
+              <div class="contact-field full">
+                <label for="cProductLine">Product line</label>
+                <select id="cProductLine" name="productLine" class="contact-select">
+                  <option value="" selected>Choose a product line</option>
+                  <option value="Electrical & Instrumentation Bulk">Electrical &amp; Instrumentation Bulk</option>
+                  <option value="Piping Bulk Materials">Piping Bulk Materials</option>
+                  <option value="Piping Specialties">Piping Specialties</option>
+                  <option value="Equipment & Engineered Packages">Equipment &amp; Engineered Packages</option>
+                  <option value="Structural Steel">Structural Steel</option>
+                  <option value="PPE, Industrial Consumables">PPE, Industrial Consumables</option>
+                </select>
+              </div>
+
+              <!-- Items from your enquiry list (Full width) -->
+              <div class="contact-field full">
+                <label>Items from your enquiry list</label>
+                <div class="fitems-box" id="fitems">
+                  <span class="fitems-empty">No products in enquiry list.</span>
+                </div>
+                <input type="hidden" id="selectedProductsData" name="enquiryItems" value="[]">
+              </div>
+
+              <!-- Requirement details (Full width) -->
+              <div class="contact-field full">
+                <label for="cRequirement">Requirement details</label>
+                <textarea id="cRequirement" name="requirement" class="contact-textarea" rows="4" placeholder="Item, size, material grade, quantity, required delivery date"></textarea>
+              </div>
+
+              <!-- Action Buttons (Full width) -->
+              <div class="contact-form-actions">
+                <button type="submit" class="btn-contact-submit" id="btnSendEmail">
+                  Send enquiry by email
+                </button>
+                <button type="button" class="btn-contact-whatsapp" id="btnSendWhatsApp">
+                  Send on WhatsApp
+                </button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Column: Contact Info Cards -->
+        <aside class="contact-info-cards" aria-label="Contact Information" data-aos="fade-up" data-aos-delay="200">
+
+          <!-- Office Card -->
+          <div class="contact-info-card">
+            <small>Office</small>
+            <p>Office No. 13, Block A, Confident Executive Business Center, M-9, Mussafah, Abu Dhabi, UAE</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Confident+Executive+Business+Center+Mussafah+Abu+Dhabi" target="_blank" rel="noopener" class="contact-map-link">
+              Open in Google Maps
+            </a>
+          </div>
+
+          <!-- Email Card -->
+          <div class="contact-info-card">
+            <small>Email</small>
+            <a href="mailto:sales@alrayyanenergy.ae">sales@alrayyanenergy.ae</a>
+            <a href="mailto:info@alrayyanenergy.ae">info@alrayyanenergy.ae</a>
+          </div>
+
+          <!-- Phone Card -->
+          <div class="contact-info-card">
+            <small>Phone</small>
+            <a href="tel:+971561322969" dir="ltr">+971 56 132 2969</a>
+            <a href="tel:+97124488449" dir="ltr">+971 2 448 8449 Ext. 1013</a>
+          </div>
+
+          <!-- WhatsApp Button Card -->
+          <div class="contact-info-card whatsapp-card">
+            <a href="https://wa.me/971561322969?text=Hello%20Al%20Rayyan%2C%20I%20would%20like%20to%20enquire%20about%20materials." target="_blank" rel="noopener" class="btn-chat-wa">
+              Chat on WhatsApp
+            </a>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER (EXACT FIGMA REPLICA) ==================== -->
+  <footer class="site-footer">
+    <div class="site-container">
+
+      <!-- Top Grid -->
+      <div class="footer-top" data-aos="fade-up">
+
+        <!-- About Column with Figma Footer Logo -->
+        <div class="footer-about">
+          <a href="index.html" class="footer-logo" aria-label="Al Rayyan Home">
+            <img src="assets/images/global/footer-logo.png" alt="Al Rayyan Logo">
+          </a>
+          <p class="footer-desc">
+            Al Rayyan Energy &amp; Industrial Solutions LLC is a dedicated supply partner to the UAE's energy and
+            industrial sectors.
+          </p>
+        </div>
+
+        <!-- Company Column -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#clients">Our Clients</a></li>
+            <li><a href="index.html#blogs">Blogs</a></li>
+            <li><a href="#privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Services Column (with vertical divider) -->
+        <div class="footer-col has-divider">
+          <h4 class="footer-col-title">Services</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#services">Piping Bulk</a></li>
+            <li><a href="index.html#services">Valves &amp; Control</a></li>
+            <li><a href="index.html#services">E&amp;I Packages</a></li>
+            <li><a href="index.html#services">MRO &amp; Fasteners</a></li>
+          </ul>
+        </div>
+
+        <!-- Products Column (with vertical divider) -->
+        <div class="footer-col has-divider">
+          <h4 class="footer-col-title">Products</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">Pipe Suppliers UAE</a></li>
+            <li><a href="products.html">Cable Trays &amp; Ladders</a></li>
+            <li><a href="products.html">Copper Grounding</a></li>
+            <li><a href="products.html">Instrumentation Valves</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+
+          <div class="copyright">
+            &copy;2026 al-rayyan - All rights reserved
+          </div>
+
+          <div class="footer-social-wrap">
+            <span class="follow-text">Follow me</span>
+            <div class="social-icons-group">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <img src="assets/images/global/social-icons/facebook.svg" alt="Facebook">
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <img src="assets/images/global/social-icons/instagram.svg" alt="Instagram">
+              </a>
+              <a href="#" class="social-link" aria-label="YouTube">
+                <img src="assets/images/global/social-icons/youtube.svg" alt="YouTube">
+              </a>
+              <a href="#" class="social-link" aria-label="LinkedIn">
+                <img src="assets/images/global/social-icons/linkedin.svg" alt="LinkedIn">
+              </a>
+              <a href="#" class="social-link" aria-label="Spotify">
+                <img src="assets/images/global/social-icons/spotify.svg" alt="Spotify">
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating Enquiry Pill Button (Bottom Right) -->
+  <button class="floating-enquiry-pill" id="floatingEnquiryBtn" type="button" aria-label="View Enquiry Cart">
+    <span class="enquiry-pill-label">Enquiry</span>
+    <span class="enquiry-pill-badge enquiry-count-badge">0</span>
+  </button>
+
+  <!-- Scrim Overlay Backdrop -->
+  <div class="enquiry-scrim" id="scrimOverlay"></div>
+
+  <!-- Enquiry Drawer / Tray (Right Sidebar) -->
+  <aside class="enquiry-drawer" id="enquiryDrawer" aria-label="Your enquiry" aria-hidden="true">
+    <div class="enquiry-drawer-header">
+      <h3 class="enquiry-drawer-title">Your enquiry</h3>
+      <button type="button" class="enquiry-drawer-close close-enquiry-btn" aria-label="Close">×</button>
+    </div>
+    <ul class="enquiry-drawer-list" id="enquiryDrawerList"></ul>
+    <div class="enquiry-drawer-footer">
+      <button type="button" class="btn-continue-enquiry" id="continueEnquiryBtn">
+        Continue to send enquiry
+      </button>
+    </div>
+  </aside>
+
+  <!-- Toast Notification -->
+  <div class="enquiry-toast" id="toastNotification" role="status"></div>
+
+  <!-- Scripts -->
+  <script src="js/aos.js"></script>
+  <script src="js/aos-init.js"></script>
+  <script src="js/enquiry-cart.js"></script>
+  <script>
+    // WhatsApp button handler on contact form
+    document.addEventListener("DOMContentLoaded", function () {
+      var waBtn = document.getElementById("btnSendWhatsApp");
+      if (waBtn) {
+        waBtn.addEventListener("click", function () {
+          var name = document.getElementById("cName") ? document.getElementById("cName").value.trim() : "";
+          var company = document.getElementById("cCompany") ? document.getElementById("cCompany").value.trim() : "";
+          var email = document.getElementById("cEmail") ? document.getElementById("cEmail").value.trim() : "";
+          var phone = document.getElementById("cPhone") ? document.getElementById("cPhone").value.trim() : "";
+          var cat = document.getElementById("cProductLine") ? document.getElementById("cProductLine").value : "";
+          var req = document.getElementById("cRequirement") ? document.getElementById("cRequirement").value.trim() : "";
+
+          var basket = window.EnquiryCart ? window.EnquiryCart.getBasket() : [];
+          var itemsTxt = basket.map(function (b) {
+            return "- " + b.name + " (Qty: " + (b.qty || 1) + ")";
+          }).join("\n");
+
+          var lines = [
+            "Hello Al Rayyan Energy Solutions,",
+            "I would like to request an enquiry / quote:"
+          ];
+          if (name) lines.push("*Name:* " + name);
+          if (company) lines.push("*Company:* " + company);
+          if (email) lines.push("*Email:* " + email);
+          if (phone) lines.push("*Phone:* " + phone);
+          if (cat) lines.push("*Product line:* " + cat);
+          if (itemsTxt) lines.push("\n*Enquiry Items:*\n" + itemsTxt);
+          if (req) lines.push("\n*Requirement details:*\n" + req);
+
+          var url = "https://wa.me/971561322969?text=" + encodeURIComponent(lines.join("\n"));
+          window.open(url, "_blank");
+        });
+      }
+
+      var rfqForm = document.getElementById("rfqForm");
+      if (rfqForm) {
+        rfqForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = document.getElementById("cName").value.trim();
+          var email = document.getElementById("cEmail").value.trim();
+          if (!name || !email) {
+            alert("Please provide your name and email address.");
+            return;
+          }
+          var basket = window.EnquiryCart ? window.EnquiryCart.getBasket() : [];
+          var itemsTxt = basket.map(function (b) {
+            return "- " + b.name + " (Qty: " + (b.qty || 1) + ")";
+          }).join("\n");
+          var req = document.getElementById("cRequirement").value.trim();
+          
+          var subject = encodeURIComponent("Enquiry Request - " + (name || "Al Rayyan"));
+          var body = encodeURIComponent(
+            "Name: " + name + "\n" +
+            "Email: " + email + "\n" +
+            "Company: " + document.getElementById("cCompany").value + "\n" +
+            "Phone: " + document.getElementById("cPhone").value + "\n\n" +
+            "Enquiry Items:\n" + (itemsTxt || "None") + "\n\n" +
+            "Requirement:\n" + req
+          );
+          window.location.href = "mailto:sales@alrayyanenergy.ae?subject=" + subject + "&body=" + body;
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

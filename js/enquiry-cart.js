@@ -32,7 +32,6 @@
         id: item.id,
         name: item.name,
         category: item.category || "",
-        image: item.image || "",
         qty: item.qty || 1
       });
     }
@@ -80,7 +79,7 @@
   }
 
   function updateUI() {
-    // 1. Update Floating Badge
+    // 1. Update Floating Pill & Badge
     var badges = document.querySelectorAll(".enquiry-count-badge");
     badges.forEach(function (b) {
       b.textContent = basket.length;
@@ -91,49 +90,57 @@
       floatBtn.classList.toggle("visible", basket.length > 0);
     }
 
-    // 2. Update Product Card Buttons
+    // 2. Update Product Card Buttons (Main + Related)
     var addButtons = document.querySelectorAll("[data-enquiry-id]");
     addButtons.forEach(function (btn) {
       var id = btn.getAttribute("data-enquiry-id");
       var added = hasItem(id);
       btn.classList.toggle("added", added);
-      btn.textContent = added ? "Added" : "Add to enquiry";
       btn.setAttribute("aria-pressed", String(added));
+      
+      var isUpper = btn.classList.contains("btn-related-enquiry");
+      if (added) {
+        btn.textContent = "Added";
+      } else {
+        btn.textContent = isUpper ? "ADD TO ENQUIRY" : "Add to enquiry";
+      }
     });
 
     // 3. Update Drawer Item List
     var listEl = document.getElementById("enquiryDrawerList");
     if (listEl) {
       if (basket.length === 0) {
-        listEl.innerHTML = '<li class="empty-state">No products added yet. Browse our catalog to request a quote.</li>';
+        listEl.innerHTML = '<li class="empty-state">No products added to enquiry yet.<br>Browse our catalog to select items.</li>';
       } else {
-        listEl.innerHTML = basket.map(function (item, index) {
+        listEl.innerHTML = basket.map(function (item) {
           return '<li class="enquiry-item">' +
             '<div class="enquiry-item-info">' +
               '<span class="enquiry-item-name">' + escapeHtml(item.name) + '</span>' +
-              (item.category ? '<span class="enquiry-item-cat">' + escapeHtml(item.category) + '</span>' : '') +
             '</div>' +
             '<div class="enquiry-item-actions">' +
-              '<input type="number" min="1" value="' + (item.qty || 1) + '" class="enquiry-qty-input" data-qty-id="' + item.id + '">' +
-              '<button type="button" class="enquiry-remove-btn" data-remove-id="' + item.id + '" title="Remove item">×</button>' +
+              '<input type="number" min="1" value="' + (item.qty || 1) + '" class="enquiry-qty-input" data-qty-id="' + escapeHtml(item.id) + '" aria-label="Quantity">' +
+              '<button type="button" class="enquiry-remove-btn" data-remove-id="' + escapeHtml(item.id) + '" title="Remove item" aria-label="Remove item">×</button>' +
             '</div>' +
           '</li>';
         }).join("");
       }
     }
 
-    // 4. Update Form Prefill (if on contact page or quote form is visible)
-    var quoteItemsContainer = document.getElementById("quoteSelectedItems");
-    var hiddenInput = document.getElementById("selectedProductsData");
-    if (quoteItemsContainer) {
+    // 4. Update Contact Page Items List (#fitems)
+    var fitems = document.getElementById("fitems");
+    if (fitems) {
       if (basket.length === 0) {
-        quoteItemsContainer.innerHTML = '<p class="text-muted">No items selected.</p>';
+        fitems.innerHTML = '<span class="fitems-empty">No products in enquiry list.</span>';
       } else {
-        quoteItemsContainer.innerHTML = '<ul>' + basket.map(function (it) {
-          return '<li><strong>' + escapeHtml(it.name) + '</strong> (' + it.qty + ' units)</li>';
-        }).join("") + '</ul>';
+        fitems.innerHTML = '<ul class="fitems-list">' +
+          basket.map(function (b) {
+            return '<li><span class="fitems-dot">•</span> ' + escapeHtml(b.name) + ' &times; ' + (b.qty || 1) + '</li>';
+          }).join("") +
+          '</ul>';
       }
     }
+
+    var hiddenInput = document.getElementById("selectedProductsData");
     if (hiddenInput) {
       hiddenInput.value = JSON.stringify(basket);
     }
@@ -154,7 +161,7 @@
       var addBtn = e.target.closest("[data-enquiry-id]");
       if (addBtn) {
         var id = addBtn.getAttribute("data-enquiry-id");
-        var name = addBtn.getAttribute("data-enquiry-name") || id;
+        var name = addBtn.getAttribute("data-enquiry-name") || addBtn.getAttribute("data-product") || id;
         var cat = addBtn.getAttribute("data-enquiry-cat") || "";
         if (hasItem(id)) {
           removeItem(id);
@@ -164,13 +171,13 @@
         return;
       }
 
-      // Drawer trigger
+      // Drawer open trigger (Floating button or any open-enquiry-btn)
       if (e.target.closest(".open-enquiry-btn") || e.target.closest("#floatingEnquiryBtn")) {
         toggleDrawer(true);
         return;
       }
 
-      // Drawer close
+      // Drawer close trigger (Close 'x' or Scrim overlay)
       if (e.target.closest(".close-enquiry-btn") || e.target.closest("#scrimOverlay")) {
         toggleDrawer(false);
         return;
@@ -188,15 +195,15 @@
       var continueBtn = e.target.closest("#continueEnquiryBtn");
       if (continueBtn) {
         toggleDrawer(false);
-        var quoteSection = document.getElementById("requestQuoteSection") || document.getElementById("contact");
-        if (quoteSection) {
-          quoteSection.scrollIntoView({ behavior: "smooth" });
-          var firstInput = quoteSection.querySelector("input:not([type=hidden]), textarea");
-          if (firstInput) setTimeout(function () { firstInput.focus(); }, 400);
-        } else {
-          // If multi-page
-          window.location.href = "contact.html#quote";
-        }
+        // Navigate to contact.html
+        window.location.href = "contact.html";
+      }
+    });
+
+    // Close drawer on Escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        toggleDrawer(false);
       }
     });
 
